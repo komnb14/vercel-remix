@@ -28,22 +28,9 @@ export async function loader({request}: LoaderArgs) {
     const testData = await fetch(DDRAGON_CHAMPION_URL);
     const url = request.url;
     console.log("THIS NOT SHOULD CALLED");
-    return json({url, testData}, {
-        status: 200,
-        headers: {
-            "content-type": "application/json",
-            "Cache-Control": "public, maxage=600, s-maxage=6000",
-        }
-    });
+    return json({url, testData});
 }
 
-
-export const headers = ({loaderHeaders}: { loaderHeaders: Headers }) => {
-
-    return {
-        "Cache-Control": loaderHeaders.get('Cache-Control'),
-    }
-}
 
 export const meta: MetaFunction = ({data}) => {
     return {
