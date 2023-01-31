@@ -2,6 +2,9 @@ import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderDa
 import {json} from "@remix-run/router";
 import {useTranslation} from "react-i18next";
 import {LoaderArgs, MetaFunction} from "@remix-run/node";
+import {useEffect} from "react";
+import {useChangeLanguage} from "~/hooks/useChangeLanguage";
+import i18next from "~/i18n.server";
 
 const DDRAGON_CHAMPION_URL = 'https://ddragon.leagueoflegends.com/cdn/13.1.1/data/ko_KR/champion.json';
 
@@ -26,9 +29,10 @@ export const getUrlHLParams = (url: string) => {
 
 export async function loader({request}: LoaderArgs) {
     const testData = await fetch(DDRAGON_CHAMPION_URL);
+    const locale = await i18next.getLocale(request);
     const url = request.url;
     console.log("THIS NOT SHOULD CALLED");
-    return json({url, testData});
+    return json({url, locale});
 }
 
 
@@ -42,8 +46,10 @@ export const meta: MetaFunction = ({data}) => {
 
 export default function App() {
     const {i18n, t} = useTranslation();
-    let {url,} = useLoaderData<typeof loader>();
+    let {url, locale} = useLoaderData<typeof loader>();
 
+
+    useChangeLanguage(locale)
 
     return (
         <html lang={i18n.language}>
