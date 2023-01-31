@@ -19,11 +19,9 @@ export const handle = {
 
 
 export const loader = async ({request}: LoaderArgs) => {
-    const classurl = new URL(request.url);
-    const getIndex = await fetch(classurl.origin + '/api/v1/getIndexLoader').then((res) => res.json());
     const locale = await i18next.getLocale(request);
-    const url = classurl.origin
-    return json({locale, url,getIndex});
+    const url = request.url;
+    return json({locale, url});
 }
 
 export const meta: MetaFunction = ({data}) => {
@@ -36,7 +34,7 @@ export const meta: MetaFunction = ({data}) => {
 
 export default function App() {
     const {i18n, t} = useTranslation();
-    let {locale,url,getIndex} = useLoaderData<typeof loader>();
+    let {locale,url} = useLoaderData<typeof loader>();
 
 
 
@@ -56,7 +54,6 @@ export default function App() {
         <ScrollRestoration/>
         <Scripts/>
         <LiveReload/>
-        {JSON.stringify(getIndex)}
         </body>
         </html>
     );
