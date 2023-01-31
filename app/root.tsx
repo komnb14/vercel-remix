@@ -7,9 +7,9 @@ import i18next from "~/i18n.server";
 // @ts-ignore
 export const links: LinksFunction = () => {
     return [
-        {rel: "alternate", hrefLang: 'en', href: `https://robot-testing.pages.dev/?hl=en`},
-        {rel: "alternate", hrefLang: 'ko', href: `https://robot-testing.pagbes.dev/?hl=ko`},
-        {rel: "alternate", hrefLang: 'x-default', href: `https://robot-testing.pages.dev`},
+        {rel: "alternate", hrefLang: 'en', href: `https://vercel-remix-red.vercel.app/?hl=en`},
+        {rel: "alternate", hrefLang: 'ko', href: `https://vercel-remix-red.vercel.app/?hl=ko`},
+        {rel: "alternate", hrefLang: 'x-default', href: `https://vercel-remix-red.vercel.app/`},
     ];
 };
 
@@ -35,11 +35,7 @@ export const meta: MetaFunction = ({data}) => {
 export default function App() {
     const {i18n, t} = useTranslation();
     let {locale,url} = useLoaderData<typeof loader>();
-
-
-
-    useChangeLanguage(locale)
-
+    
     return (
         <html lang={i18n.language}>
         <head>
