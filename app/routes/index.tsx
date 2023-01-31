@@ -23,11 +23,12 @@ export default function Index() {
         }
     }, [i18n.language]);
 
+
     return (
         <div>
             <div>{t("greeting")}</div>
             <button onClick={onClickButton}>{t("button")}</button>
-            {JSON.stringify(getIndex)}
+            <div>{JSON.stringify(getIndex.data)}</div>
         </div>
     );
 }

@@ -1,7 +1,6 @@
 import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData,} from "@remix-run/react";
 import {useTranslation} from "react-i18next";
-import {fetch, json, LoaderArgs, MetaFunction} from "@remix-run/node";
-import {useChangeLanguage} from "~/hooks/useChangeLanguage";
+import {json, LoaderArgs, MetaFunction} from "@remix-run/node";
 import i18next from "~/i18n.server";
 
 // @ts-ignore
@@ -34,8 +33,8 @@ export const meta: MetaFunction = ({data}) => {
 
 export default function App() {
     const {i18n, t} = useTranslation();
-    let {locale,url} = useLoaderData<typeof loader>();
-    
+    let {locale, url} = useLoaderData<typeof loader>();
+
     return (
         <html lang={i18n.language}>
         <head>
