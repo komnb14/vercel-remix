@@ -1,6 +1,6 @@
 import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData,} from "@remix-run/react";
 import {useTranslation} from "react-i18next";
-import {json, LoaderArgs, MetaFunction} from "@remix-run/node";
+import {fetch, json, LoaderArgs, MetaFunction} from "@remix-run/node";
 import {useChangeLanguage} from "~/hooks/useChangeLanguage";
 import i18next from "~/i18n.server";
 
@@ -19,9 +19,10 @@ export const handle = {
 
 
 export const loader = async ({request}: LoaderArgs) => {
+    const getIndex = await fetch('/api/v1/getIndexLoader');
     const locale = await i18next.getLocale(request);
     const url = request.url;
-    return json({locale, url});
+    return json({locale, url,getIndex});
 }
 
 export const meta: MetaFunction = ({data}) => {
@@ -34,7 +35,8 @@ export const meta: MetaFunction = ({data}) => {
 
 export default function App() {
     const {i18n, t} = useTranslation();
-    let {locale,url} = useLoaderData<typeof loader>();
+    let {locale,url,getIndex} = useLoaderData<typeof loader>();
+
 
 
     useChangeLanguage(locale)
