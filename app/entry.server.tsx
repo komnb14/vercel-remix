@@ -7,8 +7,8 @@ import Backend from "i18next-fs-backend";
 import i18n from "~/i18n"
 import commonKo from '../public/locales/ko/common.json';
 import commonEn from '../public/locales/en/common.json';
-import {getUrlHLParams} from "~/root";
 import {EntryContext} from "@remix-run/node";
+import {getUrlHLParams} from "~/routes/api/v1/getIndexLoader";
 
 export default async function handleRequest(
     request: Request,
