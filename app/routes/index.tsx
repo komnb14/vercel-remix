@@ -5,7 +5,7 @@ import {useCallback} from "react";
 export default function Index() {
   const {t, i18n} = useTranslation();
 
-  console.log(i18n.language);
+
 
   const onClickButton = useCallback(() => {
     if(i18n.language === 'ko') {
