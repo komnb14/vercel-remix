@@ -22,8 +22,6 @@ export default function Index() {
             i18n.changeLanguage('ko');
         }
     }, [i18n.language]);
-
-
     return (
         <div>
             <div>{t("greeting")}</div>
