@@ -19,9 +19,10 @@ export const handle = {
 
 
 export const loader = async ({request}: LoaderArgs) => {
-    const getIndex = await fetch('/api/v1/getIndexLoader');
+    const classurl = new URL(request.url);
+    const getIndex = await fetch(classurl.origin + '/api/v1/getIndexLoader').then((res) => res.json());
     const locale = await i18next.getLocale(request);
-    const url = request.url;
+    const url = classurl.origin
     return json({locale, url,getIndex});
 }
 
@@ -55,6 +56,7 @@ export default function App() {
         <ScrollRestoration/>
         <Scripts/>
         <LiveReload/>
+        {JSON.stringify(getIndex)}
         </body>
         </html>
     );
