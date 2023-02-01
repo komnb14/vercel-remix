@@ -2,6 +2,7 @@ import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderDa
 import {useTranslation} from "react-i18next";
 import {json, LoaderArgs, MetaFunction} from "@remix-run/node";
 import i18next from "~/i18n.server";
+import {withSentry} from "@sentry/remix";
 
 // @ts-ignore
 export const links: LinksFunction = () => {
@@ -31,7 +32,7 @@ export const meta: MetaFunction = ({data}) => {
     }
 };
 
-export default function App() {
+function App() {
     const {i18n, t} = useTranslation();
     let {locale, url} = useLoaderData<typeof loader>();
 
@@ -53,3 +54,4 @@ export default function App() {
         </html>
     );
 }
+export default withSentry(App);

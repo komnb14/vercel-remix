@@ -9,6 +9,14 @@ import commonKo from '../public/locales/ko/common.json';
 import commonEn from '../public/locales/en/common.json';
 import {EntryContext} from "@remix-run/node";
 import {getUrlHLParams} from "~/routes/api/v1/getIndexLoader";
+import * as Sentry from "@sentry/remix";
+import {Integrations} from "@sentry/remix";
+
+Sentry.init({
+    dsn: "https://a6210568ac364c16af778057246f2a83:c16d13d6ba4343d7bf013dbc7159ae42@o4504605087956992.ingest.sentry.io/4504605097852928",
+    tracesSampleRate: 1,
+    integrations: [new Sentry.Integrations.BrowserTracing()],
+});
 
 export default async function handleRequest(
     request: Request,

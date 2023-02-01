@@ -1,13 +1,14 @@
 {
-  "headers": [    {
-    "source": "/",
-    "headers": [
-      {
-        "key": "Cache-Control",
-        "value": "max-age=600"
-      }
-    ]
-  },
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=600"
+        }
+      ]
+    },
     {
       "source": "/api/v1/getIndexLoader",
       "headers": [
