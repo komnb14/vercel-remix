@@ -6,7 +6,6 @@ import {useLoaderData} from "@remix-run/react";
 
 export const loader = async ({request}: LoaderArgs) => {
     const classurl = new URL(request.url);
-    throw new Error("Sentry Error");
     const getIndex = await fetch(classurl.origin + '/api/v1/getIndexLoader').then((res) => res.json());
     return json({});
 }
@@ -28,9 +27,6 @@ export default function Index() {
         <div>
             <div>{t("greeting")}</div>
             <button onClick={onClickButton}>{t("button")}</button>
-            <button onClick={() => {throw new Error("Sentry Frontend Error");}}>
-                Break the world
-            </button>
         </div>
     );
 }
