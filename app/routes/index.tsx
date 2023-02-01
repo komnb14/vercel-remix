@@ -6,14 +6,14 @@ import {useLoaderData} from "@remix-run/react";
 
 export const loader = async ({request}: LoaderArgs) => {
     const classurl = new URL(request.url);
-    const getIndex = await fetch(classurl.origin + '/api/v1/getIndexLoader').then((res) => res.json());
-    return json({getIndex});
+    // const getIndex = await fetch(classurl.origin + '/api/v1/getIndexLoader').then((res) => res.json());
+    return json({});
 }
 
 
 export default function Index() {
     const {t, i18n} = useTranslation();
-    const {getIndex} = useLoaderData<typeof loader>()
+    const {} = useLoaderData<typeof loader>()
 
     const onClickButton = useCallback(() => {
         if (i18n.language === 'ko') {
@@ -26,7 +26,6 @@ export default function Index() {
         <div>
             <div>{t("greeting")}</div>
             <button onClick={onClickButton}>{t("button")}</button>
-            <div>{JSON.stringify(getIndex.data)}</div>
         </div>
     );
 }
