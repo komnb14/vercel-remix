@@ -6,7 +6,7 @@ import {useLoaderData} from "@remix-run/react";
 
 export const loader = async ({request}: LoaderArgs) => {
     const classurl = new URL(request.url);
-    // const getIndex = await fetch(classurl.origin + '/api/v1/getIndexLoader').then((res) => res.json());
+    const getIndex = await fetch(classurl.origin + '/api/v1/getIndexLoader').then((res) => res.json());
     return json({});
 }
 
